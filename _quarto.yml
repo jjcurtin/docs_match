@@ -1,0 +1,30 @@
+project:
+  type: book
+  output-dir: docs
+
+execute:
+  echo: true
+  warning: false
+  message: false
+
+toc: true
+toc-depth: 3
+# bibliography: references.bib
+
+book:
+  title: "Documentation for MATCH"
+  author:
+  - John J. Curtin
+  - Gaylen Fronk
+  site-url: https://github.io/jjcurtin/docs_match
+  repo-url: https://github.com/jjcurtin/docs_match
+  repo-branch: main
+  repo-actions: [edit]
+  # sharing: [facebook, linkedin]
+  page-navigation: true
+  chapters:
+    - index.qmd
+    - part: "Studies"
+      chapters:
+        - study_match.qmd
+
