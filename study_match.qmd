@@ -1,1 +1,49 @@
-#  Level 1 heading
+# MATCH (Fronk Dissertation)
+
+**Project Members**: Gaylen Fronk, John Curtin, Megan Piper, Tim Baker
+
+**Dissertation/Mentoring Committee Members**: John Curtin, Megan Piper, James Li, Craig Berridge, Kate Walsh, Linnea Burk
+
+## Specific Aims
+
+Precision mental health is the application of the precision medicine paradigm to mental health conditions. Whereas traditional treatment selection relies on population-level treatment effectiveness, precision mental health guides treatment selection using individual difference characteristics likely to predict treatment success for each patient. Several factors have hindered research progress towards treatment selection via precision mental health models. First, traditional analytic techniques cannot account for the complex (high-dimensional) relationships between individual differences and treatment success necessary for robust, precise, person-level prediction. Thus, extant research has been unable to capture the real-world complexities of treatment response and recovery. Second, precision mental health research has built and evaluated models in the same samples. Consequently, these models become overfit to the development sample and do not generalize well to new data. This approach prevents precision mental health models from accurately guiding treatment selection in new patients. 
+
+Contemporary machine learning approaches are well-suited to overcome these limitations of previous precision mental health research. Machine learning models can accommodate high-dimensional arrays of features, and generalize robustly to new samples of patients. These approaches allow us to build models that are simultaneously complex enough to capture real-world relationships and generalizable enough to permit precise, person-level prediction.
+
+The proposed project represents a tangible application of the precision mental health paradigm using modern machine learning approaches. This project would produce a decision-making tool to select among cigarette smoking cessation treatments for individuals looking to quit smoking. Cigarette smoking remains a critical and costly public health crisis. Existing treatments are only modestly effective at best. Additionally, treatments are similarly effective at the population level, meaning that even population-level effectiveness cannot guide treatment selection for individuals quitting smoking. Thus, deciding among first-line (i.e., FDA-approved) smoking cessation medications is a specific, objective decision that many smokers must make. Successful application of the precision mental health paradigm to cigarette smoking cessation would have immediate clinical benefit. It would also serve as a template for how to improve treatment outcomes across substance use disorders.
+
+Specifically, this project pursues the following aims:
+
+**AIM 1: Build a machine learning model to guide treatment selection for cigarette smoking cessation.** We will build a machine learning model to predict treatment success (i.e., 4-week point-prevalence abstinence from smoking) for people who smoke who received one of three cigarette smoking cessation treatments. This model will use clinical features (predictors) from a richly characterized sample of people who smoke from a previously completed randomized controlled trial. The model will produce probabilities of treatment success for each treatment such that it can guide selection of the best treatment for any specific individual.
+
+**AIM 2: Evaluate the clinical benefit of using a treatment selection machine learning model.** Using the best model identified in **AIM 1**, we will identify the treatment for each person that gives them the highest likelihood of abstinence at 6 months by comparing predicted probabilities of abstinence for each participant for each treatment. We will evaluate the clinical benefit of this approach in two complementary ways. First, we will compare the aggregate predicted (i.e., model-based) treatment success to observed treatment success from the original trial. Second, we will compare the observed trial abstinence of individuals who (randomly) received their best treatment with the observed trial abstinence of individuals who did not. 
+
+## Approach
+
+### Data
+
+The data come from a completed RCT comparing the effectiveness of varenicline, combination nicotine replacement therapy (C-NRT), and nicotine patch. 1086 daily cigarette smokers were enrolled beginning several weeks before a target quit date and for at least 6 months following quitting smoking. Participants were randomly assigned to 12 weeks of medication treatment.
+
+The sample was comprehensively assessed for individual differences at baseline including tobacco-related, psychological, physical health, demographic, and social/environmental variables. There are 414 individual difference characteristics. Treatment will also be included as a feature in all models and allowed to interact with other features.
+
+The model outcome is treatment success (abstinent vs. smoking) based on participants' self-reported past-week smoking 4 weeks after quitting and confirmed biologically via exhaled CO. *Note*: This represents a change from an original outcome of 6 months post-quit following preliminary analyses and discussions with mentoring committee.
+
+### Model Fitting
+
+I will engineer features from raw predictors using procedures that represent categorical predictors numerically, address distributional shape, and impute missing data. I will use dimensionality reduction approaches (data- and domain-driven) to reduce the number of features in the models. I will consider glmnet, xgboost, and random forest classification statistical algorithms, which represent a wide range of characteristics. 
+
+I will use nested cross-validation, with 1 repeat of 10X CV on the inner loop and 3 repeats of 10X CV on the outer loop. Best models are selected using validation sets in the inner loop and evaluated using tests sets in the outer loop. Models will be selected and evaluated using area under the receiving operator characteristic curve (auROC). 
+### Analysis Plan
+
+Following these model fitting procedures, I will develop and select the best model configuration to predict treatment success (**AIM 1**). I will then fit that best configuration to the full sample to produce a final model. I will use this final model as the starting point for **AIM 2**.
+
+I will obtain a prediction for the likelihood of treatment success for each smoker had they received nicotine patch, C-NRT, and varenicline (3 predicted scores per participant). For each smoker, they will be "assigned" to the treatment that gives them the highest predicted chance of quitting. Thus, for each participant, I will have a) the treatment the model would have selected, and b) the predicted likelihood of quitting using that "best" treatment.
+
+I will then evaluate clinical benefit in two ways:
+
+1. I will use Bayesian estimation to compare the aggregate predicted treatment success (i.e., across participants) to observed treatment success in the original trial. This will allow me to quantify and compare statistically the difference in percent abstinence across the two treatment selection methods.
+
+2. I will use Bayesian estimation to compare the observed trial abstinence of individuals who (randomly) received their best treatment with the observed trial abstinence of individuals who did not. This second approach offers the benefit of using only objective (observed) rather than predicted outcomes.
+
+## 
+
