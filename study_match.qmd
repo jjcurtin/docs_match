@@ -33,9 +33,12 @@ The model outcome is treatment success (abstinent vs. smoking) based on particip
 I will engineer features from raw predictors using procedures that represent categorical predictors numerically, address distributional shape, and impute missing data. I will use dimensionality reduction approaches (data- and domain-driven) to reduce the number of features in the models. I will consider glmnet, xgboost, and random forest classification statistical algorithms, which represent a wide range of characteristics. 
 
 I will use nested cross-validation, with 1 repeat of 10X CV on the inner loop and 3 repeats of 10X CV on the outer loop. Best models are selected using validation sets in the inner loop and evaluated using tests sets in the outer loop. Models will be selected and evaluated using area under the receiving operator characteristic curve (auROC). 
-### Analysis Plan
 
-Following these model fitting procedures, I will develop and select the best model configuration to predict treatment success (**AIM 1**). I will then fit that best configuration to the full sample to produce a final model. I will use this final model as the starting point for **AIM 2**.
+## Analysis Plan
+
+### Overview
+
+I will develop and select the best model configuration to predict treatment success (**AIM 1**). I will then fit that best configuration to the full sample to produce a final model. I will use this final model as the starting point for **AIM 2**.
 
 I will obtain a prediction for the likelihood of treatment success for each smoker had they received nicotine patch, C-NRT, and varenicline (3 predicted scores per participant). For each smoker, they will be "assigned" to the treatment that gives them the highest predicted chance of quitting. Thus, for each participant, I will have a) the treatment the model would have selected, and b) the predicted likelihood of quitting using that "best" treatment.
 
@@ -45,5 +48,43 @@ I will then evaluate clinical benefit in two ways:
 
 2. I will use Bayesian estimation to compare the observed trial abstinence of individuals who (randomly) received their best treatment with the observed trial abstinence of individuals who did not. This second approach offers the benefit of using only objective (observed) rather than predicted outcomes.
 
-## 
+### Specific Steps
+
+#### AIM 1
+
+\01. Data cleaning, cleaning EDA, modeling EDA (*Completed*)
+
+\02. Inner loop model fitting at CHTC (*Completed*)
+
+\03. Model selection & evaluation (*In progress*)
+
++ Select best models for each outer fold based on validation set auROCs (1_metrics_inner) (*Completed*)
+
++ Evaluate best models based on test set auROCs & calibrate probabilities using beta distribution (2_metrics_outer) (*In progress*)
+
++ In-depth evaluation of best models (3_eval_outer)
+
++ *Fit single best model? Conduct SHAP on single best model?*
+
+\04. Bayesian analyses: posterior probability distributions around model performance to determine likelihood of prediction signal (distribution does not include 0.5)
+
+#### AIM 2
+
+\01. Determine which model(s) to use to generate predicted probabilities for each participant for each treatment (3 per person)
+
+\02. Obtain 3 predicted probabilities for each participant, substituting each of the three treatments
+
+\03. Identify "best" treatment for each participant
+
+\04. Quantify clinical benefit: Method 1
+
++ Extract best treatment probability for each participant
+
++ Bayesian comparison of predicted probabilities with observed abstinence
+
+\05. Quantify clinical benefit: Method 2
+
++ Label each participant as assigned best treatment or not (i.e., best treatment per model matches randomly assigned treatment)
+
++ Bayesian comparison of abstinence rates for individuals assigned best treatment (vs. not) using only observed abstinence
 
