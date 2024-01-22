@@ -52,11 +52,11 @@ I will then evaluate clinical benefit in two ways:
 
 #### AIM 1
 
-\01. Data cleaning, cleaning EDA, modeling EDA (*Completed*)
+1. Data cleaning, cleaning EDA, modeling EDA (*Completed*)
 
-\02. Inner loop model fitting at CHTC (*Completed*)
+2. Inner loop model fitting at CHTC (*Completed*)
 
-\03. Model selection & evaluation (*In progress*)
+3. Model selection & evaluation (*In progress*)
 
 + Select best models for each outer fold based on validation set auROCs (1_metrics_inner) (*Completed*)
 
@@ -66,23 +66,23 @@ I will then evaluate clinical benefit in two ways:
 
 + *Fit single best model? Conduct SHAP on single best model?*
 
-\04. Bayesian analyses: posterior probability distributions around model performance to determine likelihood of prediction signal (distribution does not include 0.5)
+4. Bayesian analyses: posterior probability distributions around model performance to determine likelihood of prediction signal (distribution does not include 0.5)
 
 #### AIM 2
 
-\01. Determine which model(s) to use to generate predicted probabilities for each participant for each treatment (3 per person)
+1. Determine which model(s) to use to generate predicted probabilities for each participant for each treatment (3 per person)
 
-\02. Obtain 3 predicted probabilities for each participant, substituting each of the three treatments
+2. Obtain 3 predicted probabilities for each participant, substituting each of the three treatments
 
-\03. Identify "best" treatment for each participant
+3. Identify "best" treatment for each participant
 
-\04. Quantify clinical benefit: Method 1
+4. Quantify clinical benefit: Method 1
 
 + Extract best treatment probability for each participant
 
 + Bayesian comparison of predicted probabilities with observed abstinence
 
-\05. Quantify clinical benefit: Method 2
+5. Quantify clinical benefit: Method 2
 
 + Label each participant as assigned best treatment or not (i.e., best treatment per model matches randomly assigned treatment)
 
