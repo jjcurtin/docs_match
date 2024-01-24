@@ -4,6 +4,8 @@
 
 **Dissertation/Mentoring Committee Members**: John Curtin, Megan Piper, James Li, Craig Berridge, Kate Walsh, Linnea Burk
 
+**Estimated Defense**: June 2024
+
 ## Specific Aims
 
 Precision mental health is the application of the precision medicine paradigm to mental health conditions. Whereas traditional treatment selection relies on population-level treatment effectiveness, precision mental health guides treatment selection using individual difference characteristics likely to predict treatment success for each patient. Several factors have hindered research progress towards treatment selection via precision mental health models. First, traditional analytic techniques cannot account for the complex (high-dimensional) relationships between individual differences and treatment success necessary for robust, precise, person-level prediction. Thus, extant research has been unable to capture the real-world complexities of treatment response and recovery. Second, precision mental health research has built and evaluated models in the same samples. Consequently, these models become overfit to the development sample and do not generalize well to new data. This approach prevents precision mental health models from accurately guiding treatment selection in new patients. 
@@ -60,31 +62,54 @@ I will then evaluate clinical benefit in two ways:
 
 + Select best models for each outer fold based on validation set auROCs (1_metrics_inner) (*Completed*)
 
-+ Evaluate best models based on test set auROCs & calibrate probabilities using beta distribution (2_metrics_outer) (*In progress*)
++ Evaluate best models based on test set auROCs & calibrate probabilities using beta distribution (2_metrics_outer) (*Completed*)
 
 + In-depth evaluation of best models (3_eval_outer)
 
-+ *Fit single best model? Conduct SHAP on single best model?*
+4. Fit single best model
+
++ 1x 10-fold simple CV in the full dataset (mimic inner loop process), select model with best auROC across 10 held-out folds
+
++ Refit best configuration in the full dataset
+
+5. Conduct SHAP on single best model
 
 4. Bayesian analyses: posterior probability distributions around model performance to determine likelihood of prediction signal (distribution does not include 0.5)
 
+**AIM 1 Supplemental Analyses**
+
+1. Model training, selection, & evaluation with 6-month outcome, follow steps 2 & 3 above
+
+2. Bayesian analyses: comparisons of posterior probability distributions between 1-month and 6-month test set auROCs (30 held-out folds from outer loop of nested CV)
+
 #### AIM 2
 
-1. Determine which model(s) to use to generate predicted probabilities for each participant for each treatment (3 per person)
+1. Use final model to generate predicted probabilities for each participant for each treatment (3 per person)
 
-2. Obtain 3 predicted probabilities for each participant, substituting each of the three treatments
++ Make features using recipe trained from full dataset
 
-3. Identify "best" treatment for each participant
++ Predict into held-out feature set: 3 probabilities per participant, one per treatment (triplicate dataset and substitute treatments)
 
-4. Quantify clinical benefit: Method 1
++ Calibrate probabilities using beta distribution
+
++ Subsequent dataframe should include: subid, RCT tx, observed outcome, 3X probabilities, best tx
+
+2. Validity analysis: compare sample-average observed abstinence (means of 0s and 1s) to predicted probabilities from RCT tx
+
+3. Quantify clinical benefit: Method 1
 
 + Extract best treatment probability for each participant
 
-+ Bayesian comparison of predicted probabilities with observed abstinence
++ Bayesian comparison of predicted probabilities with observed abstinence (across all treatments/full sample)
 
-5. Quantify clinical benefit: Method 2
+4. Quantify clinical benefit: Method 2
 
-+ Label each participant as assigned best treatment or not (i.e., best treatment per model matches randomly assigned treatment)
++ Label each participant as assigned best treatment or not (RCT tx == best tx, T/F)
 
 + Bayesian comparison of abstinence rates for individuals assigned best treatment (vs. not) using only observed abstinence
 
+## Project Notes
+
+1/24/24: decided to include supplemental analyses with 6-month outcomes, anticipating this as a committee request that would be time-consuming to do as a revision. Only go through inner and outer loops of nested (i.e., until I have 30 held-out auROCs for model comparisons)
+
+1/24/24: added validity analysis (Aim 2, point 2). Validity check as to how accurately the model is predicting the observed abstinence rates in the sample.
