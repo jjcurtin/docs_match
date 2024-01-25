@@ -58,17 +58,17 @@ I will then evaluate clinical benefit in two ways:
 
 2. Inner loop model fitting at CHTC (*Completed*)
 
-3. Model selection & evaluation (*In progress*)
+3. Model selection & evaluation (*Completed*)
 
 + Select best models for each outer fold based on validation set auROCs (1_metrics_inner) (*Completed*)
 
 + Evaluate best models based on test set auROCs & calibrate probabilities using beta distribution (2_metrics_outer) (*Completed*)
 
-+ In-depth evaluation of best models (3_eval_outer)
++ In-depth evaluation of best models (3_eval_outer) (*Completed*)
 
 4. Fit single best model
 
-+ 1x 10-fold simple CV in the full dataset (mimic inner loop process), select model with best auROC across 10 held-out folds
++ 1x 10-fold simple CV in the full dataset (mimic inner loop process), select model with best auROC across 10 held-out folds (*In progress*)
 
 + Refit best configuration in the full dataset
 
