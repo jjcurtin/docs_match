@@ -66,11 +66,11 @@ I will then evaluate clinical benefit in two ways:
 
 + In-depth evaluation of best models (3_eval_outer) (*Completed*)
 
-4. Fit single best model
+4. Fit single best model (*In progress*)
 
-+ 1x 10-fold simple CV in the full dataset (mimic inner loop process), select model with best auROC across 10 held-out folds (*In progress*)
++ 1x 10-fold simple CV in the full dataset (mimic inner loop process), select model with best auROC across 10 held-out folds (*Completed*)
 
-+ Refit best configuration in the full dataset
++ Refit best configuration in the full dataset (*Write new script?*)
 
 5. Conduct SHAP on single best model
 
