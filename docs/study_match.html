@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.353">
+<meta name="generator" content="quarto-1.3.450">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -56,7 +56,8 @@ ul.task-list li input[type="checkbox"] {
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
@@ -75,7 +76,7 @@ ul.task-list li input[type="checkbox"] {
       <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./study_match.html">Studies</a></li><li class="breadcrumb-item"><a href="./study_match.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">MATCH (Fronk Dissertation)</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -89,7 +90,7 @@ ul.task-list li input[type="checkbox"] {
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Documentation for MATCH</a> 
         <div class="sidebar-tools-main">
-    <a href="https://github.com/jjcurtin/docs_match" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="https://github.com/jjcurtin/docs_match" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
 </div>
     </div>
       </div>
@@ -221,15 +222,15 @@ ul.task-list li input[type="checkbox"] {
 <li><p>In-depth evaluation of best models (3_eval_outer) (<em>Completed</em>)</p></li>
 </ul>
 <ol start="4" type="1">
-<li>Fit single best model (<em>In progress</em>)</li>
+<li>Fit single best model (<em>Completed</em>)</li>
 </ol>
 <ul>
 <li><p>1x 10-fold simple CV in the full dataset (mimic inner loop process), select model with best auROC across 10 held-out folds (<em>Completed</em>)</p></li>
-<li><p>Refit best configuration in the full dataset (<em>Write new script?</em>)</p></li>
+<li><p>Refit best configuration in the full dataset (<em>Completed</em>)</p></li>
 </ul>
 <ol start="5" type="1">
-<li><p>Conduct SHAP on single best model</p></li>
-<li><p>Bayesian analyses: posterior probability distributions around model performance to determine likelihood of prediction signal (distribution does not include 0.5)</p></li>
+<li><p>Conduct SHAP on single best model using 1X 10-fold held-out folds (<em>In progress</em>)</p></li>
+<li><p>Bayesian analyses: posterior probability distributions around model performance to determine likelihood of prediction signal (distribution does not include 0.5) (<em>In progress</em>)</p></li>
 </ol>
 <p><strong>AIM 1 Supplemental Analyses</strong></p>
 <ol type="1">
@@ -244,12 +245,12 @@ ul.task-list li input[type="checkbox"] {
 </ol>
 <ul>
 <li><p>Make features using recipe trained from full dataset</p></li>
-<li><p>Predict into held-out feature set: 3 probabilities per participant, one per treatment (triplicate dataset and substitute treatments)</p></li>
+<li><p>Predict into full-data feature set: 3 probabilities per participant, one per treatment (triplicate dataset and substitute treatments)</p></li>
 <li><p>Calibrate probabilities using beta distribution</p></li>
 <li><p>Subsequent dataframe should include: subid, RCT tx, observed outcome, 3X probabilities, best tx</p></li>
 </ul>
 <ol start="2" type="1">
-<li><p>Validity analysis: compare sample-average observed abstinence (means of 0s and 1s) to predicted probabilities from RCT tx</p></li>
+<li><p><em>Validity analysis</em>: compare sample-average observed abstinence (means of 0s and 1s) to predicted probabilities from RCT tx. This will show how well the model predictions match observed cases.</p></li>
 <li><p>Quantify clinical benefit: Method 1</p></li>
 </ol>
 <ul>
@@ -268,8 +269,9 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="project-notes" class="level2" data-number="1.4">
 <h2 data-number="1.4" class="anchored" data-anchor-id="project-notes"><span class="header-section-number">1.4</span> Project Notes</h2>
-<p>1/24/24: decided to include supplemental analyses with 6-month outcomes, anticipating this as a committee request that would be time-consuming to do as a revision. Only go through inner and outer loops of nested (i.e., until I have 30 held-out auROCs for model comparisons)</p>
+<p>1/24/24: decided to include supplemental analyses with 6-month outcomes, anticipating this as a committee request that would be time-consuming to do as a revision. Only go through inner and outer loops of nested (i.e., until I have 30 held-out auROCs for Bayesian model comparisons)</p>
 <p>1/24/24: added validity analysis (Aim 2, point 2). Validity check as to how accurately the model is predicting the observed abstinence rates in the sample.</p>
+<p>2/9/24: decided with John via Slack that we would do SHAP using the single, best selected model but using held-out folds from 1x 10-fold simple k-fold</p>
 
 
 </section>
