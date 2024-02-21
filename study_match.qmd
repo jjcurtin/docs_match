@@ -84,17 +84,17 @@ I will then evaluate clinical benefit in two ways:
 
 #### AIM 2
 
-1. Use final model to generate predicted probabilities for each participant for each treatment (3 per person)
+1. Use final model to generate predicted probabilities for each participant for each treatment (3 per person) (*Completed*)
 
-+ Make features using recipe trained from full dataset
++ Make features using recipe trained from full dataset (*Completed*)
 
-+ Predict into full-data feature set: 3 probabilities per participant, one per treatment (triplicate dataset and substitute treatments)
++ Predict into full-data feature set: 3 probabilities per participant, one per treatment (triplicate dataset and substitute treatments) (*Completed*)
 
-+ Calibrate probabilities using beta distribution
++ Calibrate probabilities (*Completed*)
 
-+ Subsequent dataframe should include: subid, RCT tx, observed outcome, 3X probabilities, best tx
++ Subsequent dataframe should include: subid, RCT tx, observed outcome, 3X probabilities, best tx (*Completed*)
 
-2. *Validity analysis*: compare sample-average observed abstinence (means of 0s and 1s) to predicted probabilities from RCT tx. This will show how well the model predictions match observed cases.
+2. *Validity analysis*: compare sample-average observed abstinence (means of 0s and 1s) to predicted probabilities from RCT tx. This will show how well the model predictions match observed cases. Do this across calibration methods to determine which (if any) best matches observed outcomes (*Completed*)
 
 3. Quantify clinical benefit: Method 1
 
@@ -114,4 +114,5 @@ I will then evaluate clinical benefit in two ways:
 
 1/24/24: added validity analysis (Aim 2, point 2). Validity check as to how accurately the model is predicting the observed abstinence rates in the sample.
 
-2/9/24: decided with John via Slack that we would do SHAP using the single, best selected model but using held-out folds from 1x 10-fold simple k-fold
+2/9/24: decided with John via Slack that we would do SHAP using the single, best selected model but using held-out folds from 1x 10-fold simple k-fold. Will also do SHAP at CHTC because of computational cost
+
